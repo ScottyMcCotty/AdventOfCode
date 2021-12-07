@@ -26,5 +26,8 @@ class Splitter
     vector<int> getSplit();
 
     string format();
+
+    Splitter operator+(Splitter &other);
+    Splitter operator*(Splitter &other);
 };
 

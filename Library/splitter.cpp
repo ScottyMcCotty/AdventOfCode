@@ -8,6 +8,8 @@ using namespace std;
 Splitter::Splitter(int data) : Splitter(data, -1)
 {
     // cout << this->data << endl;
+
+    this->length = this->split.size();
 }
 
 Splitter::Splitter(int data, int length)
@@ -23,12 +25,17 @@ Splitter::Splitter(int data, int length)
     // pad the data
     this->padData(this->split, length);
 
+    // set the length
+    this->length = length;
+
     // cout << "Exit  constructor:\n\tdata=" << data << "\tlength=" << length << endl;
 }
 
 Splitter::Splitter(vector<int> split) : Splitter(split, -1)
 {
     // cout << this->data << endl;
+
+    this->length = this->split.size();
 }
 
 Splitter::Splitter(vector<int> split, int length)
@@ -41,6 +48,8 @@ Splitter::Splitter(vector<int> split, int length)
 
     // save the data
     this->split = split;
+
+    this->length = length;
 }
 
 vector<int> Splitter::splitData(int data)
@@ -124,7 +133,53 @@ string Splitter::format()
     for (int ii = 0; ii < this->split.size(); ++ii)
     {
         result += to_string(this->split.at(ii));
+
+        result += " ";
     }
 
     return result;
+}
+
+Splitter Splitter::operator+(Splitter &other)
+{
+    // get each splitter's currently split data
+    vector<int> shorter = (this->length < other.length) ? this->getSplit() : other.getSplit();
+    vector<int> longer  = (this->length < other.length) ? other.getSplit() : this->getSplit();
+
+    // reverse the data so that we can add them more easily
+    reverse(shorter.begin(), shorter.end());
+    reverse(longer.begin(), longer.end());
+
+    // add the shorter data into the longer data
+    for (int ii = 0; ii < shorter.size(); ++ii)
+    {
+        longer[ii] += shorter[ii];
+    }
+
+    // reverse the new data so that it's in the right order
+    reverse(longer.begin(), longer.end());
+
+    return Splitter(longer, longer.size());
+}
+
+Splitter Splitter::operator*(Splitter &other)
+{
+    // get each splitter's currently split data
+    vector<int> shorter = (this->length < other.length) ? this->getSplit() : other.getSplit();
+    vector<int> longer  = (this->length < other.length) ? other.getSplit() : this->getSplit();
+
+    // reverse the data so that we can add them more easily
+    reverse(shorter.begin(), shorter.end());
+    reverse(longer.begin(), longer.end());
+
+    // add the shorter data into the longer data
+    for (int ii = 0; ii < shorter.size(); ++ii)
+    {
+        longer[ii] *= shorter[ii];
+    }
+
+    // reverse the new data so that it's in the right order
+    reverse(longer.begin(), longer.end());
+
+    return Splitter(longer, longer.size());
 }
