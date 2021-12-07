@@ -1,4 +1,9 @@
 
+#include <string>
+#include <vector>
+
+using namespace std;
+
 class Splitter
 {
     private:
@@ -12,12 +17,14 @@ class Splitter
 
     public:
     Splitter(int data);
-    Splitter(int data, int length = -1);
+    Splitter(int data, int length);
     Splitter(vector<int> split);
     Splitter(vector<int> split, int length);
 
-    int data();
-    int data(int index);
-    vector<int> data();
-}
+    int getData();
+    int getData(int index);
+    vector<int> getSplit();
+
+    string format();
+};
 

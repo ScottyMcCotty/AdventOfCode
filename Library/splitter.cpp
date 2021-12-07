@@ -1,5 +1,6 @@
 
 #include <math.h>
+#include "splitter.h"
 
 Splitter::Splitter(int data)
 {
@@ -82,24 +83,39 @@ int Splitter::combineData(vector<int> data)
     for (int ii = data.size() - 1; ii >= 0; --ii)
     {
         // value ^ bit number
-        // bit number is data.size()-1 - ii
         sum += pow(data[ii], data.size()-1 - ii)
     }
 
     return sum;
 }
 
-int Splitter::data()
+int Splitter::getData()
 {
     return this->data;
 }
 
-int Splitter::data(int index)
+int Splitter::getData(int index)
 {
     return this->split.at(index);
 }
 
-vector<int> Splitter::data()
+vector<int> Splitter::getSplit()
 {
     return this->split;
+}
+
+string format()
+{
+    // not sure the best way to format the data.
+
+    // for now, append each value in the split data onto a string
+
+    string result = "";
+
+    for (int ii = 0; ii < this->split.size(); ++ii)
+    {
+        result += to_string(this->split.at(ii));
+    }
+
+    return result;
 }
