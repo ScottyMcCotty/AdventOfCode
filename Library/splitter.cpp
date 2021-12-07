@@ -13,13 +13,13 @@ Splitter::Splitter(int data, int length)
     this->data = data;
     
     // need to split the data
-    this->split = this->splitData(data, length);
+    this->split = this->splitData(data);
 
     // pad the data
     this->padData(this->split, length);
 }
 
-Splitter::Splitter(int<vector> split)
+Splitter::Splitter(vector<int> split)
 {
     Splitter(split, -1);
 }
@@ -36,11 +36,11 @@ Splitter::Splitter(vector<int> split, int length)
     this->split = split;
 }
 
-vector<int> Splitter::splitData(int data, int length)
+vector<int> Splitter::splitData(int data)
 {
     if (data < 0)
     {
-        throw ValueError("Negative numbers confuse me!!");
+        throw "Negative numbers confuse me!!";
     }
 
     // There's probably a better way of doing this...
@@ -60,13 +60,13 @@ vector<int> Splitter::splitData(int data, int length)
     }
 }
 
-vector<int> Splitter::padData(vector<int> &data, int length)
+void Splitter::padData(vector<int> &data, int length)
 {
     if (length == -1) return;
 
     if (data.size() > length)
     {
-        throw ValueError("More digits given than desired!!");
+        throw "More digits given than desired!!";
     }
 
     while (data.size() < length)
@@ -83,7 +83,7 @@ int Splitter::combineData(vector<int> data)
     for (int ii = data.size() - 1; ii >= 0; --ii)
     {
         // value ^ bit number
-        sum += pow(data[ii], data.size()-1 - ii)
+        sum += pow(data[ii], data.size()-1 - ii);
     }
 
     return sum;
@@ -104,7 +104,7 @@ vector<int> Splitter::getSplit()
     return this->split;
 }
 
-string format()
+string Splitter::format()
 {
     // not sure the best way to format the data.
 

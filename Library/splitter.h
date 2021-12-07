@@ -12,9 +12,9 @@ class Splitter
     vector<int> split = vector<int>();
 
     vector<int> splitData(int data);
-    vector<int> combineData(int data);
-    vector<int> padData(vector<int> data, int length);
-
+    void padData(vector<int> &data, int length);
+    int combineData(vector<int> data);
+    
     public:
     Splitter(int data);
     Splitter(int data, int length);
