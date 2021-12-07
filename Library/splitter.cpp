@@ -1,14 +1,19 @@
 
 #include <math.h>
 #include "splitter.h"
+#include <iostream>
 
-Splitter::Splitter(int data)
+using namespace std;
+
+Splitter::Splitter(int data) : Splitter(data, -1)
 {
-    Splitter(data, -1);
+    // cout << this->data << endl;
 }
 
 Splitter::Splitter(int data, int length)
 {
+    // cout << "Enter constructor:\n\tdata=" << data << "\tlength=" << length << endl;
+
     // save the data
     this->data = data;
     
@@ -17,11 +22,13 @@ Splitter::Splitter(int data, int length)
 
     // pad the data
     this->padData(this->split, length);
+
+    // cout << "Exit  constructor:\n\tdata=" << data << "\tlength=" << length << endl;
 }
 
-Splitter::Splitter(vector<int> split)
+Splitter::Splitter(vector<int> split) : Splitter(split, -1)
 {
-    Splitter(split, -1);
+    // cout << this->data << endl;
 }
 
 Splitter::Splitter(vector<int> split, int length)
@@ -58,6 +65,8 @@ vector<int> Splitter::splitData(int data)
         // truncate the digit using integer division
         data = data / 10;
     }
+
+    return split;
 }
 
 void Splitter::padData(vector<int> &data, int length)
