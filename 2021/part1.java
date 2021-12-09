@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class RENAME
+public class part1
 {
 
     public static void main(String argv[]) throws Exception
@@ -18,7 +18,7 @@ public class RENAME
             return;
         }
 
-        ArrayList<Integer> contents = readAllContents(argv[0]);
+        ArrayList<String> contents = readAllContents(argv[0]);
 
         solve(contents);
     }
@@ -39,7 +39,7 @@ public class RENAME
                 String line;
                 while ((line = br.readLine()) != null) {
                    // process the line by just converting to integer and pushing into arraylist
-                   contents.add(Integer.valueOf(line));
+                   contents.add(line);
                 }
             }
         }
