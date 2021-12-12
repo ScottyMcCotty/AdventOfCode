@@ -42,6 +42,10 @@ def setup(day):
         for line in data:
             split = line.split("=", 1)
             properties[ split[0].strip() ] = split[1].strip()
+    
+    if "session" not in properties:
+        print('Your local.properties file needs a session key. Example:\n"session = 123456789ABC"')
+        exit(1)
         
     # print(properties)
 
