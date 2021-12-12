@@ -11,26 +11,30 @@ public class part1
 
     public static void main(String argv[]) throws Exception
     {
+        String file = "input.in";
+
         if (argv.length == 0)
         {
-            System.err.println("I need a file! Or use \"-s\" for stdin");
-            
-            return;
+            System.err.println("Using default file \"input.in\"");
+        }
+        else
+        {
+            file = argv[0];
         }
 
-        ArrayList<String> contents = readAllContents(argv[0]);
+        ArrayList<String> contents = readAllContents(file);
 
         solve(contents);
     }
 
-    public static ArrayList<Integer> readAllContents(String filename) throws Exception
+    public static ArrayList<String> readAllContents(String filename) throws Exception
     {
-        ArrayList<Integer> contents = new ArrayList<>();
+        ArrayList<String> contents = new ArrayList<>();
 
         if (filename.equals("-s"))
         {
             // use stdin somehow
-            throw new Exception("Whoops, reading from stdin isn't actually supported yet");
+            throw new Exception("Whoops, reading from stdin isn't supported yet");
         }
         else
         {
@@ -47,7 +51,7 @@ public class part1
         return contents;
     }
 
-    public static void solve(ArrayList<Integer> data)
+    public static void solve(ArrayList<String> data)
     {
     }
 }
