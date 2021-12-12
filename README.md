@@ -21,6 +21,9 @@ That should create a `Day1` directory with various files:
         Part1.java
         Part2.java
 
-Changing to that directory, and running `make part1`, should build and run the
-`Part1` class using `input.txt`; `make test` should build and run the `Part1`
-class using `test.txt` (which won't exist unless you create it).
+In that directory:
+- `make test1` should build and run the `Part1` class using `test.txt` (which
+  won't exist unless you create it).
+- `make part1` should build and run the `Part1` class using `input.txt`.
+- `make test2` should build and run the `Part2` class using `test.txt`
+- `make part2` should build and run the `Part2` class using `input.txt`.
