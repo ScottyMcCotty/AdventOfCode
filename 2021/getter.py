@@ -39,7 +39,11 @@ def setup(day):
     # read the key from local.properties
     with open("local.properties", "r") as f:
         data = f.readlines()
+
         for line in data:
+            if line.strip()[0] == "#":
+                # it's a comment line, so skip it
+                continue
             split = line.split("=", 1)
             properties[ split[0].strip() ] = split[1].strip()
     
