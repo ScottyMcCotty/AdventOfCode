@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class part1
+public class part2
 {
 
     public static void main(String argv[]) throws Exception
@@ -55,6 +55,7 @@ public class part1
     {
         int x = 0;
         int depth = 0;
+        int aim = 0;
 
         for (int ii = 0; ii < data.size(); ++ii)
         {
@@ -63,14 +64,15 @@ public class part1
             if (commands[0].equals("forward"))
             {
                 x += Integer.parseInt(commands[1]);
+                depth += aim * Integer.parseInt(commands[1]);
             }
             else if (commands[0].equals("down"))
             {
-                depth += Integer.parseInt(commands[1]);
+                aim += Integer.parseInt(commands[1]);
             }
             else if (commands[0].equals("up"))
             {
-                depth -= Integer.parseInt(commands[1]);
+                aim -= Integer.parseInt(commands[1]);
             }
             else
             {
