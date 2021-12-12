@@ -40,8 +40,8 @@ def setup(day):
     with open("local.properties", "r") as f:
         data = f.readlines()
         for line in data:
-            split = line.split(" = ")
-            properties[ split[0] ] = split[1]
+            split = line.split("=", 1)
+            properties[ split[0].strip() ] = split[1].strip()
         
     # print(properties)
 
