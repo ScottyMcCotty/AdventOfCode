@@ -9,6 +9,23 @@ In your 2021 directory, put your session cookie in `local.properties`:
 
     session = 53616c74...
 
+And, uhh... super lame, but create a `Makefile.config` depending on your
+platform:
+
+    JAVA = java
+    JAVAC = javac
+    PYTHON = python
+    RM = del
+    CP = copy
+
+or
+
+    JAVA = java
+    JAVAC = javac
+    PYTHON = python3
+    RM = rm
+    CP = cp
+
 Then you can set up a day's code and fetch its input:
 
     python getter.py 1
@@ -19,7 +36,6 @@ That should create a `Day1` directory with various files:
         input.txt
         Makefile
         Part1.java
-        Part2.java
 
 In that directory:
 - `make test1` should build and run the `Part1` class using `test.txt` (which
@@ -27,3 +43,6 @@ In that directory:
 - `make part1` should build and run the `Part1` class using `input.txt`.
 - `make test2` should build and run the `Part2` class using `test.txt`
 - `make part2` should build and run the `Part2` class using `input.txt`.
+
+`Part2.java` will be copied from `Part1.java` the first time you run
+`make test2` or `make part2`.
