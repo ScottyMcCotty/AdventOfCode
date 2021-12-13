@@ -160,7 +160,7 @@ public class Part2
 
         Collections.sort(scores);
 
-        System.out.println(scores);
+        // System.out.println(scores);
 
         System.out.format("Score: %d\n", scores.get(scores.size() / 2));
     }
