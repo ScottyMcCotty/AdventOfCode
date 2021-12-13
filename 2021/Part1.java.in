@@ -11,6 +11,12 @@ public class Part1
 
     public static void main(String argv[]) throws Exception
     {
+        //  can we access our library code?
+        LibraryClass1 lc1 = new LibraryClass1();
+        lc1.doSomething();
+        LibraryClass2 lc2 = new LibraryClass2();
+        lc2.doSomething();
+
         String file = "input.txt";
 
         if (argv.length == 0)

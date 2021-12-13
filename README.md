@@ -9,11 +9,13 @@ In your 2021 directory, put your session cookie in `local.properties`:
 
     session = 53616c74...
 
-And, uhh... super lame, but create a `Makefile.config` depending on your
+And, uhh... super lame, but in your top-level directory (the one containing
+`2020` and `2021`), create a `Makefile.config` depending on your
 platform.  For DOS:
 
     JAVA = java
     JAVAC = javac
+    JAR = jar
     PYTHON = python3
     RM = del
     CP = copy
@@ -22,6 +24,7 @@ or Unix:
 
     JAVA = java
     JAVAC = javac
+    JAR = jar
     PYTHON = python3
     RM = rm
     CP = cp
