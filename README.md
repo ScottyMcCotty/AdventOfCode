@@ -10,7 +10,7 @@ In your 2021 directory, put your session cookie in `local.properties`:
     session = 53616c74...
 
 And, uhh... super lame, but create a `Makefile.config` depending on your
-platform:
+platform.  For DOS:
 
     JAVA = java
     JAVAC = javac
@@ -18,7 +18,7 @@ platform:
     RM = del
     CP = copy
 
-or
+or Unix:
 
     JAVA = java
     JAVAC = javac
