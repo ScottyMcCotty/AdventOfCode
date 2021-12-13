@@ -14,25 +14,9 @@ def setup(day):
         print("Directory may already exist... or something else is wrong")
         return
 
-    #Create 4 empty files
-    # lista = ["/part2.py", "/test.py", "/testinput.txt"]
-    # for i in lista:
-    #     open(path + i, 'a').close()
-
-    #Create and Write to part1.py
-    # part1 = path + "/part1.py"
-    # f = open(part1, "a")
-    # f.write('data = open("input.txt").read().split("\\n")')
-    # f.close()
-
-    # this might be OS specific, hopefully it works
-    # subprocess.run(["copy", "part1.java", "Day" + day], shell=True)
+    # copy in the template files
     copyfile("Makefile.in", path + "/Makefile")
     copyfile("Part1.java.in", path + "/Part1.java")
-    copyfile("Part2.java.in", path + "/Part2.java")
-
-    # chrome_options = Options()
-    # chrome_options.add_argument("--headless")
 
     properties = {}
 
