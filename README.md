@@ -12,9 +12,10 @@ In your 2021 directory, put your session cookie in `local.properties`:
 And, uhh... super lame, but create a `Makefile.config` depending on your
 platform.  For DOS:
 
+    #  DOS
     JAVA = java
     JAVAC = javac
-    PYTHON = python
+    PYTHON = python3
     RM = del
     CP = copy
 
