@@ -7,7 +7,7 @@
 include ../../Makefile.config
 LIBDIR = ../../Library
 AOC_JAR = $(LIBDIR)/aoc.jar
-CLASSPATH = -cp .;$(AOC_JAR)
+CLASSPATH = -cp .$(CPSEP)$(AOC_JAR)
 
 test1: Part1.class FORCE
 	$(JAVA) $(CLASSPATH) Part1 test.txt

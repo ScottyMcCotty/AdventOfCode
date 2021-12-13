@@ -19,6 +19,8 @@ platform.  For DOS:
     PYTHON = python3
     RM = del
     CP = copy
+    #  -classpath separator
+    CPSEP = ;
 
 or Unix:
 
@@ -28,6 +30,8 @@ or Unix:
     PYTHON = python3
     RM = rm
     CP = cp
+    #  -classpath separator
+    CPSEP = :
 
 Then you can set up a day's code and fetch its input:
 
