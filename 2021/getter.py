@@ -40,7 +40,7 @@ def setup(day):
     # url for where the input file is
     url_input = "https://adventofcode.com/2021/day/" + day + "/input"
     
-    subprocess.run(["curl", "-b", properties["session"], "-o", path + "/input.txt", url_input]) #, shell=True)
+    subprocess.run(["curl", "-b", "session=" + properties["session"], "-o", path + "/input.txt", url_input]) #, shell=True)
 
     #Success?!
     print(str(path) + " and adjacent files created!")
