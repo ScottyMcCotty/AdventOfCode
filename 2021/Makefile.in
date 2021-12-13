@@ -5,7 +5,7 @@
 #  input.txt - real input for both parts
 
 include ../../Makefile.config
-CLASSPATH = -cp .:../../Library/aoc.jar
+CLASSPATH = -cp .;../../Library/aoc.jar
 
 test1: Part1.class FORCE
 	$(JAVA) $(CLASSPATH) Part1 test.txt
