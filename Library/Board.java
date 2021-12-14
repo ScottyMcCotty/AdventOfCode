@@ -6,6 +6,15 @@ public class Board
     protected ArrayList<ArrayList<Integer>> board = new ArrayList<ArrayList<Integer>>();
     protected int fill;
 
+    /**
+     * A rectangular Board constructor where every cell is initialized with the specified fill value.
+     * <p>
+     * Has built in methods for rotating, mirroring, and folding.
+     * 
+     * @param numRows   Number of rows
+     * @param numCols   Number of columns
+     * @param fill      Value to fill in each cell
+     */
     public Board(int numRows, int numCols, int fill)
     {
         this.fill = fill;
@@ -26,6 +35,13 @@ public class Board
         // System.out.println(board);
     }
 
+    /**
+     * Set the value at the specified position.
+     * 
+     * @param row   Row of the board, indexed from 0 starting at the top
+     * @param col   Column of the board, indexed from 0 starting on the left
+     * @param value New value of the cell
+     */
     public void set(int row, int col, int value)
     {
         if (row >= this.board.size() || col >= this.board.get(0).size())
@@ -36,6 +52,13 @@ public class Board
         this.board.get(row).set(col, value);
     }
 
+    /**
+     * Get the value at the specified position.
+     * 
+     * @param row   Row of the board, indexed from 0 starting at the top
+     * @param col   Column of the board, indexed from 0 starting on the left
+     * @return      The value in the cell
+     */
     public int get(int row, int col)
     {
         if (row >= this.board.size() || col >= this.board.get(0).size())
@@ -46,6 +69,23 @@ public class Board
         return this.board.get(row).get(col);
     }
 
+    /**
+     * @return  The default fill value for this board, which was set in the object constructor
+     */
+    public int getFill()
+    {
+        return this.fill;
+    }
+
+    /**
+     * For every cell in the board, the value in that cell is incremented by <code>increment</code>
+     * if the cell is equal to <code>condition</code>.
+     * <p>
+     * Similar to the <code>setIf()</code> method but meant for setting a new value which depends on the previous value
+     * 
+     * @param condition The condition to check whether each cell is equal to
+     * @param increment The value to change each cell if it matches <code>condition</code>
+     */
     public void addIf(int condition, int increment)
     {
         for (int ii = 0; ii < this.board.size(); ++ii)
@@ -60,6 +100,15 @@ public class Board
         }
     }
 
+    /**
+     * For every cell in the board, the value in that cell is set to <code>value</code>
+     * if the cell is equal to <code>condition</code>.
+     * <p>
+     * Similar to the <code>addIf()</code> method but meant for setting a new value regardless of the previous value
+     * 
+     * @param condition The condition to check whether each cell is equal to
+     * @param value     The value to set each cell if it matches <code>condition</code>
+     */
     public void setIf(int condition, int value)
     {
         for (int ii = 0; ii < this.board.size(); ++ii)
@@ -74,11 +123,22 @@ public class Board
         }
     }
 
+    /**
+     * Prints the contents of <code>this.board</code>, where (0,0) is the top left corner.
+     */
     public void print()
     {
         printBoard(this.board);
     }
 
+    /**
+     * Prints any board.
+     * <p>
+     * Useful for debugging methods which change the values in a board because
+     * the board can be printed in its before and after states.
+     * 
+     * @param board The board to print
+     */
     private void printBoard(ArrayList<ArrayList<Integer>> board)
     {
         for (ArrayList<Integer> row : board)
@@ -90,8 +150,14 @@ public class Board
     // want:
     // rotate, mirror, fill, clear
 
-    // THIS SHOULD BE MOVED TO THE SQUAREBOARD CLASS
-    // rotate in the clockwise direction by degrees amount. Only multiples of 90 are allowed, only square boards are allowed
+    /**
+     * Rotates the contents of <code>this.board</code> by <code>degrees</code> amount.
+     * <p>
+     * NOTE TO SELF: This method should be moved to the SquareBoard class which extends Board,
+     * because rotations are only defined for a square board.
+     * 
+     * @param degrees   The amount of degrees to rotate. Clockwise is positive. Must be a multiple of 90
+     */
     public void rotate(int degrees)
     {
         // is this a valid board to rotate?
@@ -186,8 +252,19 @@ public class Board
         this.board = newboard;
     }
 
-    // mirrors the board across the vertical center axis
-    public void mirrorLR()
+    /**
+     * Mirror the contents of <code>this.board</code> across the vertical center axis.
+     * <p>
+     * The board: <p>
+     * 1 2 3 <p>
+     * 4 5 6 <p>
+     * 7 8 9 <p>
+     * becomes: <p>
+     * 3 2 1 <p>
+     * 6 5 4 <p>
+     * 9 8 7 <p>
+     */
+    public void mirrorHorizontal()
     {
         // 1 2 3    3 2 1
         // 4 5 6    6 5 4
@@ -199,10 +276,83 @@ public class Board
         {
             ArrayList<Integer> row = new ArrayList<Integer>();
 
-            for (int jj = 0; jj < this.board.get(0).size(); ++jj)
+            for (int jj = 0; jj < this.board.get(ii).size(); ++jj)
             {
-                // row.add()
+                row.add( this.board.get(ii).get(this.board.get(ii).size() - 1 - jj) );
+            }
+
+            newboard.add(row);
+        }
+
+        System.out.println("Mirror across vertical axis complete.\nOld board:");
+        printBoard(this.board);
+        System.out.println("New board:");
+        printBoard(newboard);
+
+        this.board = newboard;
+    }
+
+    /**
+     * Mirror the contents of <code>this.board</code> across the horizontal center axis.
+     * <p>
+     * The board: <p>
+     * 1 2 3 <p>
+     * 4 5 6 <p>
+     * 7 8 9 <p>
+     * becomes: <p>
+     * 7 8 9 <p>
+     * 4 5 6 <p>
+     * 1 2 3 <p>
+     */
+    public void mirrorVertical()
+    {
+        // 1 2 3    7 8 9
+        // 4 5 6    4 5 6
+        // 7 8 9    1 2 3
+
+        ArrayList<ArrayList<Integer>> newboard = new ArrayList<ArrayList<Integer>>();
+
+        for (int ii = 0; ii < this.board.size(); ++ii)
+        {
+            ArrayList<Integer> row = new ArrayList<Integer>();
+
+            for (int jj = 0; jj < this.board.get(ii).size(); ++jj)
+            {
+                row.add( this.board.get(this.board.size() - 1 - ii).get(jj) );
+            }
+
+            newboard.add(row);
+        }
+
+        System.out.println("Mirror across horizontal axis complete.\nOld board:");
+        printBoard(this.board);
+        System.out.println("New board:");
+        printBoard(newboard);
+
+        this.board = newboard;
+    }
+
+    /**
+     * Fills the entire board with <code>value</code>.
+     * 
+     * @param value The value to fill into the entire board
+     */
+    public void fill(int value)
+    {
+        for (int ii = 0; ii < this.board.size(); ++ii)
+        {
+            for (int jj = 0; jj < this.board.get(ii).size(); ++ii)
+            {
+                this.board.get(ii).set(jj, value);
             }
         }
+    }
+    
+    /**
+     * Fills the entire value with this board's default fill value.
+     */
+    public void clear()
+    {
+        fill(this.fill);
     }
 }
