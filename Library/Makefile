@@ -1,6 +1,6 @@
 include ../Makefile.config
 
-aoc.jar: LibraryClass1.java LibraryClass2.java
+aoc.jar: *.java
 	$(JAVAC) *.java
 	$(JAR) cf aoc.jar *.class
 
